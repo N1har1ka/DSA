@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class binarySearch {
+    public static int binSearch(int []arr, int key){
+        int low=0;
+        int high=arr.length-1;
+        while (low<=high) {
+            int mid=low+(high-low)/2;
+            if(arr[mid]==key){
+                return mid;
+            }
+            if(key<arr[mid]){
+                high=mid-1;
+            }
+            if(key>arr[mid]){
+                low=mid+1;
+            }
+        }
+        return -1;
+    }
+    public static void main(String[] args) {
+        int[] arr={3,2,4};
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter item to search: ");
+        int key=sc.nextInt();
+        int idx=binSearch(arr,key);
+        if(idx==-1){
+            System.out.print("Value not found");
+        }else{
+            System.out.print("Found at index: "+idx);
+        }
+    }
+}
