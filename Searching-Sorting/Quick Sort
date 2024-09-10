@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+public class quickSort{
+    public static void quicksort(int arr[],int low,int high){
+        if(low<high){
+            int idx=partition(arr,low,high);
+            quicksort(arr, low, idx-1);
+            quicksort(arr, idx+1, high);
+        }
+    }
+    public static int partition(int arr[],int low,int high){
+        int pivot=arr[high];
+        int i=low-1;
+        for(int x=low;x<high;x++){
+            if(arr[x]<pivot){
+                i++;
+                int temp=arr[x];
+                arr[x]=arr[i];
+                arr[i]=temp;
+            }
+        }
+        i++;
+        int temp=arr[high];
+        arr[high]=arr[i];
+        arr[i]=temp;
+        return i;
+    }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Enter the length of an array: ");
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        int i=0;
+        while(i<n){
+            System.out.print("Enter value of arr[" + (i+1) + "]: ");
+            arr[i]=sc.nextInt();
+            i++;
+        }
+        System.out.print("Before sorting: ");
+        for(int j:arr){
+            System.out.print(j+" ");
+        }
+        System.out.println();
+        quicksort(arr,0,arr.length-1);
+        System.out.print("After sorting: ");
+        for(int j:arr){
+            System.out.print(j+" ");
+        }
+    }
+}
